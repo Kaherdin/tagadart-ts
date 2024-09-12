@@ -1,5 +1,5 @@
 'use client'
-import { Border } from '@/components/Border'
+import { Border } from '@/components/ui/Border'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { fetchAxiosAPI } from '@/request/request'
 import { BaseData } from '@/types/global'

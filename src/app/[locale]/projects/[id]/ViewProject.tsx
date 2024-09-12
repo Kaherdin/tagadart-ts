@@ -1,5 +1,5 @@
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
-import { Testimonial } from '@/components/Testimonial'
+import { Testimonial } from '@/components/elements/Testimonial'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionImage'

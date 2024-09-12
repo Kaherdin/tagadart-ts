@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Border } from '@/components/Border'
+import { Border } from '@/components/ui/Border'
 import { Button } from '@/components/elements/Button'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { Container } from '@/components/ui/Container'

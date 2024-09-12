@@ -1,8 +1,8 @@
 'use client'
-import { Border } from '@/components/Border'
+import { Border } from '@/components/ui/Border'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { MessageMarkdown } from '@/components/ui/message-markdown'
-import { PageLinks } from '@/components/PageLinks'
+import { PageLinks } from '@/components/ui/PageLinks'
 import { fetchAxiosAPI } from '@/request/request'
 import { useEffect, useState } from 'react'
 

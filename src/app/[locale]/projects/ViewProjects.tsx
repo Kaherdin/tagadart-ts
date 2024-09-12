@@ -1,7 +1,7 @@
 import Clients from '@/components/sections/Clients'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import ProjectCard from '@/components/ProjectCard'
+import ProjectCard from '@/components/elements/ProjectCard'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { fetchAxiosAPI } from '@/request/request'
