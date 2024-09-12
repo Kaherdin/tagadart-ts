@@ -130,12 +130,12 @@ export function Footer() {
         <div className="mb-20 mt-24 flex flex-wrap items-center justify-between gap-x-6 gap-y-4 border-t border-neutral-950/10 pt-12">
           <Link href="/" aria-label="Home">
             {/* <Logo className="h-8" fillOnHover /> */}
-            {/* <NextCloudinaryImage
+            <NextCloudinaryImage
               src={'logo_tagadart_2ef62a5f8c'}
               alt="Logo"
               width={80}
               height={80}
-            /> */}
+            />
           </Link>
           <p className="text-sm text-neutral-700">
             © Tagadart SARL {new Date().getFullYear()}

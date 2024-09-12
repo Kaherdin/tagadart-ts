@@ -7,7 +7,11 @@ const withNextIntl = createNextIntlPlugin()
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: [
+      'res.cloudinary.com',
+      'tagadart-live-b00744013bc4.herokuapp.com',
+      'tagadart-live-b00744013bc4.herokuapp.comhttps', // add this line
+    ],
     // remotePatterns: [
     //   {
     //     protocol: 'https',

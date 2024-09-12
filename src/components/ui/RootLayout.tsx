@@ -88,7 +88,7 @@ function Header({
               className="fill-slate-50 brightness-100"
             />
          */}
-          {/* <NextCloudinaryImage
+          <NextCloudinaryImage
             src={
               invert
                 ? 'logo_tagadart_white_a60e46ff2a'
@@ -98,7 +98,7 @@ function Header({
             width={140}
             height={140}
             className="m-auto rounded-xl sm:rounded-3xl"
-          /> */}
+          />
 
           {/* <Logo
             className="hidden h-8 sm:block"
