@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { Logo } from '@/components/images/Logo'
-import { socialMediaProfiles } from '@/components/SocialMedia'
+import { socialMediaProfiles } from '@/components/sections/SocialMedia'
 
 import { useTranslations } from 'next-intl'
-import NextCloudinaryImage from './ImageNextCloudinary'
+import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 // import { getTranslations } from 'next-intl/server'
 
 function Navigation() {

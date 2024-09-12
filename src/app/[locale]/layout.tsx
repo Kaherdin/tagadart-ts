@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import { RootLayout } from '@/components/RootLayout'
+import { RootLayout } from '@/components/ui/RootLayout'
 import '@/styles/tailwind.css'
 
 import { NextIntlClientProvider } from 'next-intl'
