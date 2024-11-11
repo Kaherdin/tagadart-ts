@@ -12,14 +12,15 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { useTranslations } from 'next-intl'
 
 interface ProjectCardProps {
-  project: Project
+  project: Project,
+  index: number
 }
 
-const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
+const ProjectCard1: React.FC<ProjectCardProps> = ({ project, index }) => {
   const t = useTranslations('Project')
 
   return (
-    <FadeIn key={project.id} className="flex" style={{ opacity: 1, transform: 'none' }}>
+    <FadeIn key={index} className="flex" style={{ opacity: 1, transform: 'none' }}>
       <Link href={`/projects/${project.id}`}>
         <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
           <div className="flex items-center">

@@ -52,20 +52,19 @@ function Fetcher<T>({
     populate: effectivePopulate,
     pagination: paginationMode === "off" ? undefined : { ...params.pagination, page: currentPage },
   };
-
   const queryString = qs.stringify(effectiveParams, {
     encode: false,
     arrayFormat: "indices",
     allowDots: false,
   });
+  const urlWithQuery = paginationMode === "pagination" ? `${url}?${queryString}` : `${url}?populate=${effectivePopulate}`;
   const { data, error, mutate } = useSWR<any>(
-    `${url}?${queryString}`,
+    urlWithQuery,
     fetchUseSWR,
     {
       refreshInterval: 30000,
     }
   );
-
   const hasNextPage =
     data?.meta?.pagination?.page < data?.meta?.pagination?.pageCount;
 
@@ -76,10 +75,13 @@ function Fetcher<T>({
   useEffect(() => {
     if (data) {
       if (paginationMode === "infinite") {
-        setAccumulatedData((prevData) => ({
-          data: prevData ? [...prevData.data, ...data.data] : [...data.data],
-          meta: data.meta,
-        }));
+        setAccumulatedData((prevData) => {
+          const newAccumulatedData = {
+            data: prevData ? [...prevData.data, ...data.data] : [...data.data],
+            meta: data.meta,
+          };
+          return newAccumulatedData;
+        });
       } else {
         setAccumulatedData(data);
       }

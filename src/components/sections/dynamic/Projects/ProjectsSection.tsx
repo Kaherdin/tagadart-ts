@@ -34,13 +34,9 @@ const RenderContent: React.FC<RenderContentProps> = ({
       return (
         <Container>
           <SectionIntro {...sectionIntro} />
-          <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {projects.map((project: Project) => (
-              <FadeIn key={project.id}>
-                <ProjectCard1 key={project.id} project={project} />
-              </FadeIn>
+            {projects.map((project: Project, index: number) => (
+                <ProjectCard1 key={index} project={project} index={index}/>
             ))}
-          </FadeInStagger>
         </Container>
       );
   }
