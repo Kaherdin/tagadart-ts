@@ -17,7 +17,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { GridPattern } from '@/components/ui/GridPattern'
-import  ErrorBoundary  from '@/components/elements/ErrorBoundary'
+import ErrorBoundary from '@/components/elements/ErrorBoundary'
 
 import { useTranslations } from 'next-intl'
 
@@ -246,7 +246,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       <motion.div
         layout
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-white pt-40"
+        className="relative flex flex-auto overflow-hidden bg-white pt-28"
       >
         <motion.div
           layout
