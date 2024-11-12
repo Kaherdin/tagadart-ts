@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  fontOptimization: {
+    preload: true,
+    preconnect: true,
+    formats: ['woff2'],
+  },
 }
 
 export default async function LocaleLayout({
@@ -25,13 +30,18 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages()
 
   return (
     <html lang={locale} className="h-full bg-neutral-950 text-base antialiased">
       <head>
+        <link
+          rel="preload"
+          href="../../fonts/Mona-Sans.var.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16700186470"
           strategy="afterInteractive"
@@ -46,7 +56,6 @@ export default async function LocaleLayout({
         </Script>
       </head>
       <body className="flex min-h-full flex-col">
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
         <NextIntlClientProvider messages={messages}>
           <RootLayout>{children}</RootLayout>
           <Toaster />
