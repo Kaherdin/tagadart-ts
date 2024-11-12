@@ -96,6 +96,7 @@ function Header({
             alt="Tagadart Logo"
             width={140}
             height={140}
+            crop="fit"
             className="m-auto"
           />
 
@@ -274,7 +275,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       <motion.div
         layout
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-white pt-14"
+        className="relative flex flex-auto overflow-hidden bg-white pt-40"
       >
         <motion.div
           layout
