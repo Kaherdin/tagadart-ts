@@ -80,13 +80,11 @@ const NextCloudinaryImage = ({
     className: `transition-opacity duration-300 ${
       isLoading ? 'opacity-0' : 'opacity-100'
     } ${className}`,
-    loading: priority ? ('eager' as const) : ('lazy' as const),
     crop,
     gravity,
     quality,
     format: fetchFormat,
     dpr,
-
     radius,
     effect,
   }
@@ -112,8 +110,11 @@ const NextCloudinaryImage = ({
       )}
 
       <CldImage
+        priority={true}
         {...imageConfig}
         {...props}
+        alt={alt ? alt : 'default'}
+        style={{ width: width, height: 'auto' }}
         onLoad={() => setIsLoading(false)}
         onError={(e) => {
           setIsLoading(false)
