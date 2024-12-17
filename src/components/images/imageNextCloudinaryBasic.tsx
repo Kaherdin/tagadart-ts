@@ -1,38 +1,67 @@
 'use client'
 
+import { useState } from 'react'
 import { CldImage, CldImageProps } from 'next-cloudinary'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import clsx from 'clsx'
 
-type NextCloudinaryImageProps = CldImageProps & {
-  alt: string
-  width: number
-  height: number
-  src: string
-  crop?: string
-  gravity?: string
+type OptimizedImageProps = CldImageProps & {
+  className?: string
+  skeletonClassName?: string
 }
 
-const NextCloudinaryImage = ({
+const OptimizedImage = ({
   alt,
   width,
   height,
   src,
-  crop = 'auto', //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
-  gravity = 'auto', //https://cloudinary.com/documentation/resizing_and_cropping#control_gravity
+  crop, //  //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
+  priority = false,
+  removeBackground = false,
+  format = 'auto',
+  quality = 'auto',
+  className,
+  skeletonClassName,
   ...props
-}: NextCloudinaryImageProps) => {
+}: OptimizedImageProps) => {
+  const [isLoading, setIsLoading] = useState(!priority)
+
   return (
-    <CldImage
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading="lazy"
-      // sizes="(min-width: 480px ) 50vw, (min-width: 728px) 33vw, (min-width: 976px) 25vw, 100vw" //TODO: Better responsive sizes
-      crop={crop}
-      gravity={gravity}
-      {...props}
-    />
+    <div className="relative">
+      {isLoading && (
+        <div className={clsx('absolute inset-0', skeletonClassName)}>
+          <Skeleton
+            className="h-full w-full"
+            baseColor="#f3f4f6"
+            highlightColor="#e5e7eb"
+          />
+        </div>
+      )}
+
+      <CldImage
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        crop={crop}
+        priority={priority}
+        format={format}
+        quality={quality}
+        removeBackground={removeBackground}
+        className={clsx(
+          'h-auto max-w-full transition-opacity duration-300',
+          className,
+          {
+            'opacity-0': isLoading,
+            'opacity-100': !isLoading,
+          },
+        )}
+        onLoad={() => setIsLoading(false)}
+        {...props}
+      />
+    </div>
   )
 }
 
-export default NextCloudinaryImage
+export default OptimizedImage
