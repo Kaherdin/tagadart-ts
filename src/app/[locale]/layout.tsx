@@ -1,8 +1,6 @@
 import { type Metadata } from 'next'
 import { Toaster } from '@/components/ui/toaster'
-
 import '@/styles/tailwind.css'
-
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { RootLayout } from '@/components/ui/RootLayout'
