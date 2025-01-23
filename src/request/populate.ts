@@ -3,91 +3,87 @@ import { RestQueryParams } from '@/types/global'
 export const structurePopulate = {
   structure: {
     on: {
-      'section.blog-section': {
+      "section.blog-section": {
         populate: [
-          'sectionIntro',
-          'posts',
-          'posts.pageIntro',
-          'posts.pageIntro.cover',
-          'posts.author',
-          'posts.author.avatar',
+          "sectionIntro",
+          "posts",
+          "posts.pageIntro",
+          "posts.pageIntro.cover",
+          "posts.author",
+          "posts.author.avatar",
         ],
       },
-      'section.text-section': {
-        populate: '*',
+      "section.text-section": {
+        populate: "*",
       },
-      'section.projects-section': {
+      "section.projects-section": {
         populate: [
-          'sectionIntro',
-          'projects',
-          'projects.pageIntro',
-          'projects.pageIntro.cover',
-          'projects.logo',
+          "sectionIntro",
+          "projects",
+          "projects.pageIntro",
+          "projects.pageIntro.cover",
+          "projects.logo",
         ],
       },
-      'section.contact-section': {
+      "section.contact-section": {
         populate: [
-          'sectionIntro',
-          'content',
-          'content.offices',
-          'content.emails',
-          'content.socials',
+          "sectionIntro",
+          "content",
+          "content.offices",
+          "content.emails",
+          "content.socials",
         ],
       },
-      'section.services-section': {
+      "section.services-section": {
         populate: [
-          'sectionIntro',
-          'our_services',
-          'our_services.pageIntro',
-          'our_services.pageIntro.cover',
+          "sectionIntro",
+          "our_services",
+          "our_services.pageIntro",
+          "our_services.pageIntro.cover",
         ],
       },
-      'section.pricing-section': {
-        populate: ['sectionIntro', 'cards', 'cards.features'],
+      "section.pricing-section": {
+        populate: ["sectionIntro", "cards", "cards.features"],
       },
-      'section.team-section': {
+      "section.team-section": {
         populate: [
-          'sectionIntro',
-          'members',
-          'members.fullname',
-          'members.avatar',
-          'members.posts.pageIntro',
+          "sectionIntro",
+          "members",
+          "members.avatar",
+          "members.posts.pageIntro",
         ],
       },
-      'section.reference-section': {
-        populate: ['sectionIntro', 'clients', 'clients.name', 'clients.logo'],
+      "section.reference-section": {
+        populate: ["sectionIntro", "clients", "clients.logo"],
       },
-      'section.culture-section': {
-        populate: ['sectionIntro', 'values', 'values.title'],
+      "section.culture-section": {
+        populate: ["sectionIntro", "values"],
       },
-      'section.cta': {
-        populate: ['sectionIntro', 'buttons'],
+      "section.cta": {
+        populate: ["sectionIntro", "buttons"],
       },
-      'section.page-intro': {
-        populate: ['title', 'eyebrow', 'content', 'cover'],
+      "section.page-intro": {
+        populate: ["cover"],
       },
-      'section.features-section': {
-        populate: ['sectionIntro', 'features'],
+      "section.features-section": {
+        populate: ["sectionIntro", "features"],
       },
-      'section.testimonials': {
+      "section.testimonials": {
         populate: [
-          'sectionIntro',
-          'testimonials',
-          'testimonials.pageIntro',
-          'testimonials.pageIntro.cover',
-          'testimonials.author',
-          'testimonials.author.avatar',
-          'testimonials.member',
-          'testimonials.member.fullname',
-          'testimonials.member.avatar',
+          "sectionIntro",
+          "testimonials",
+          "testimonials.author",
+          "testimonials.author.avatar",
+          "testimonials.member",
+          "testimonials.member.avatar",
         ],
       },
-      'section.hero-section': {
-        populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
+      "section.hero-section": {
+        populate: ["sectionIntro", "sectionIntro.cover", "buttons", "logo"],
       },
     },
   },
-}
+};
 
 export const collectionPopulates = {
   projects: {
