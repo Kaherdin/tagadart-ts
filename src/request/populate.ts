@@ -49,22 +49,21 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'members',
-          'members.fullname',
           'members.avatar',
           'members.posts.pageIntro',
         ],
       },
       'section.reference-section': {
-        populate: ['sectionIntro', 'clients', 'clients.name', 'clients.logo'],
+        populate: ['sectionIntro', 'clients', 'clients.logo'],
       },
       'section.culture-section': {
-        populate: ['sectionIntro', 'values', 'values.title'],
+        populate: ['sectionIntro', 'values'],
       },
       'section.cta': {
         populate: ['sectionIntro', 'buttons'],
       },
       'section.page-intro': {
-        populate: ['title', 'eyebrow', 'content', 'cover'],
+        populate: ['cover'],
       },
       'section.features-section': {
         populate: ['sectionIntro', 'features'],
@@ -73,12 +72,9 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'testimonials',
-          'testimonials.pageIntro',
-          'testimonials.pageIntro.cover',
           'testimonials.author',
           'testimonials.author.avatar',
           'testimonials.member',
-          'testimonials.member.fullname',
           'testimonials.member.avatar',
         ],
       },

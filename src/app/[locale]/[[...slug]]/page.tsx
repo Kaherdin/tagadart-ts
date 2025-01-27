@@ -7,19 +7,21 @@ import { componentResolver } from '@/lib/componentResolver'
 import { fetchPageBySlug } from '@/request/fetch'
 
 type Props = {
-  params: {
+  params: Promise<{
     lang: string
     slug: string
-  }
+  }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
   const page = await fetchPageBySlug(params.slug, params.lang)
 
   return generateSlugPageMetadata({ page })
 }
 
-export default async function PageRoute({ params }: Props) {
+export default async function PageRoute(props: Props) {
+  const params = await props.params
   const page = await fetchPageBySlug(params.slug, params.lang)
 
   if (!page || !page.data || page.data.length === 0) return null
