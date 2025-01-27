@@ -12,12 +12,14 @@ interface CultureCardProps {
 const CultureCard1: React.FC<CultureCardProps> = async ({ culture }) => {
   const t = await getTranslations('Culture')
 
-  console.log(culture, 'culture')
-
   return (
     <>
       <GridListItem key={culture.id} title={culture.title} invert>
-        {culture.content && <BasicMarkdown>{culture.content}</BasicMarkdown>}
+        {/* {culture.content} */}
+
+        {culture.content && (
+          <div className="text-primary-100">{culture.content}</div>
+        )}
       </GridListItem>
     </>
   )
