@@ -2,11 +2,7 @@
 
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-import {
-  createHomeQueryParams,
-  createHomeSeoQueryParams,
-  createQueryParams,
-} from './populate'
+import { createQueryParams } from './populate'
 
 //////// PAGES
 export async function fetchPageBySlug(slug: string, lang: string) {
@@ -24,62 +20,7 @@ export async function fetchPageBySlug(slug: string, lang: string) {
   }
 
   try {
-    const startTime = Date.now()
     const pageData = await fetchAxiosAPI(path, queryParams)
-    const endTime = Date.now()
-    console.log('duration: ', endTime - startTime)
-    return pageData // Return the full response, not just data
-  } catch (error) {
-    console.error('Failed to load page data:', error)
-    throw error
-  }
-}
-// fetch home page
-export async function fetchHomePageBySlug(slug: string, lang: string) {
-  const querySlug = slug === undefined ? 'home' : slug
-  const path = '/pages'
-
-  const queryParams = {
-    ...createHomeQueryParams('pages'),
-    filters: {
-      slug: {
-        $eq: querySlug,
-      },
-    },
-    locale: lang,
-  }
-
-  try {
-    const startTime = Date.now()
-    const pageData = await fetchAxiosAPI(path, queryParams)
-    const endTime = Date.now()
-    console.log('duration: ', endTime - startTime)
-    return pageData // Return the full response, not just data
-  } catch (error) {
-    console.error('Failed to load page data:', error)
-    throw error
-  }
-}
-// fetch ceo
-export async function fetchHomeSEOPageBySlug(slug: string, lang: string) {
-  const querySlug = slug === undefined ? 'home' : slug
-  const path = '/pages'
-
-  const queryParams = {
-    ...createHomeSeoQueryParams('pages'),
-    filters: {
-      slug: {
-        $eq: querySlug,
-      },
-    },
-    locale: lang,
-  }
-
-  try {
-    const startTime = Date.now()
-    const pageData = await fetchAxiosAPI(path, queryParams)
-    const endTime = Date.now()
-    console.log('duration: ', endTime - startTime)
     return pageData // Return the full response, not just data
   } catch (error) {
     console.error('Failed to load page data:', error)
@@ -92,17 +33,6 @@ export async function fetchPosts() {
 
   try {
     const postsData = await fetchAxiosAPI('posts', queryParams)
-    return postsData?.data
-  } catch (error) {
-    console.error('Failed to load posts data:', error)
-    throw error
-  }
-}
-export async function fetchHome() {
-  const queryParams = createHomeQueryParams('pages')
-
-  try {
-    const postsData = await fetchAxiosAPI('pages', queryParams)
     return postsData?.data
   } catch (error) {
     console.error('Failed to load posts data:', error)

@@ -3,183 +3,86 @@ import { RestQueryParams } from '@/types/global'
 export const structurePopulate = {
   structure: {
     on: {
-      // Generic fields for sections with intro and cover
-      'section.page-intro': populateIntroWithCover(),
       'section.blog-section': {
-        populate: {
-          sectionIntro: true,
-          posts: {
-            populate: {
-              ...populatePageIntroWithCover(),
-              author: {
-                populate: {
-                  avatar: populateImage(), // Only fetch avatar image URL
-                },
-              },
-            },
-            pagination: { pageSize: 5 }, // Fetch only 5 posts per request
-          },
-        },
+        populate: [
+          'sectionIntro',
+          'posts',
+          'posts.pageIntro',
+          'posts.pageIntro.cover',
+          'posts.author',
+          'posts.author.avatar',
+        ],
       },
-      'section.text-section': populateTitleAndContent(),
+      'section.text-section': {
+        populate: '*',
+      },
       'section.projects-section': {
-        populate: {
-          sectionIntro: true,
-          projects: {
-            populate: {
-              ...populatePageIntroWithCover(),
-              logo: populateImage(), // Fetch only logo URL
-            },
-            pagination: { pageSize: 5 }, // Limit the number of projects
-          },
-        },
+        populate: [
+          'sectionIntro',
+          'projects',
+          'projects.pageIntro',
+          'projects.pageIntro.cover',
+          'projects.logo',
+        ],
       },
       'section.contact-section': {
-        populate: {
-          sectionIntro: true,
-          content: { populate: ['offices', 'emails', 'socials'] },
-        },
+        populate: [
+          'sectionIntro',
+          'content',
+          'content.offices',
+          'content.emails',
+          'content.socials',
+        ],
       },
       'section.services-section': {
-        populate: {
-          sectionIntro: true,
-          our_services: {
-            populate: {
-              ...populatePageIntroWithCover(),
-            },
-            pagination: { pageSize: 5 }, // Limit the number of services
-          },
-        },
+        populate: [
+          'sectionIntro',
+          'our_services',
+          'our_services.pageIntro',
+          'our_services.pageIntro.cover',
+        ],
       },
       'section.pricing-section': {
-        populate: {
-          sectionIntro: true,
-          cards: {
-            populate: { features: true }, // Only fetch features for pricing cards
-          },
-        },
+        populate: ['sectionIntro', 'cards', 'cards.features'],
       },
       'section.team-section': {
-        populate: {
-          sectionIntro: true,
-          members: {
-            populate: {
-              fullname: true,
-              avatar: populateImage(), // Fetch only avatar image URL
-              posts: { populate: { pageIntro: true } },
-            },
-            pagination: { pageSize: 5 }, // Limit the number of team members
-          },
-        },
+        populate: [
+          'sectionIntro',
+          'members',
+          'members.avatar',
+          'members.posts.pageIntro',
+        ],
       },
       'section.reference-section': {
-        populate: {
-          sectionIntro: true,
-          clients: {
-            fields: ['name', 'link'], // Fetch only client name and link
-            populate: { logo: populateImage() }, // Fetch only logo URL
-            pagination: { pageSize: 10 }, // Limit the number of clients
-          },
-        },
+        populate: ['sectionIntro', 'clients', 'clients.logo'],
       },
       'section.culture-section': {
-        populate: {
-          sectionIntro: true,
-          values: { fields: ['title'] }, // Fetch only value titles
-        },
+        populate: ['sectionIntro', 'values'],
       },
       'section.cta': {
-        populate: {
-          sectionIntro: true,
-          buttons: true, // Fetch all buttons
-        },
+        populate: ['sectionIntro', 'buttons'],
+      },
+      'section.page-intro': {
+        populate: ['cover'],
       },
       'section.features-section': {
-        populate: {
-          sectionIntro: true,
-          features: true, // Fetch all features
-        },
+        populate: ['sectionIntro', 'features'],
       },
       'section.testimonials': {
-        populate: {
-          sectionIntro: true,
-          testimonials: {
-            populate: {
-              ...populatePageIntroWithCover(),
-              author: { populate: { avatar: populateImage() } }, // Fetch only avatar URL
-              member: {
-                populate: {
-                  fullname: true,
-                  avatar: populateImage(), // Fetch only avatar URL
-                },
-              },
-            },
-            pagination: { pageSize: 5 }, // Limit the number of testimonials
-          },
-        },
+        populate: [
+          'sectionIntro',
+          'testimonials',
+          'testimonials.author',
+          'testimonials.author.avatar',
+          'testimonials.member',
+          'testimonials.member.avatar',
+        ],
       },
       'section.hero-section': {
-        populate: {
-          sectionIntro: populateHeroIntroWithCover(), // Fetch hero intro with cover image
-          buttons: true, // Fetch all buttons
-          logo: populateImage(), // Fetch only logo URL
-        },
+        populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
       },
     },
   },
-};
-
-// Helper to populate intro with cover
-function populateIntroWithCover() {
-  return {
-    populate: {
-      title: true,
-      eyebrow: true,
-      content: true,
-      cover: populateImage(), // Fetch only the URL of the cover image
-    },
-  };
-}
-
-// Helper to populate title and content
-function populateTitleAndContent() {
-  return {
-    populate: {
-      title: true,
-      content: true,
-    },
-  };
-}
-
-// Helper to populate page intro with cover
-function populatePageIntroWithCover() {
-  return {
-    pageIntro: {
-      populate: {
-        title: true,
-        eyebrow: true,
-        content: true,
-        cover: populateImage(), // Fetch only the cover image URL
-      },
-    },
-  };
-}
-
-// Helper to populate hero intro with cover
-function populateHeroIntroWithCover() {
-  return {
-    populate: {
-      title: true,
-      eyebrow: true,
-      content: true,
-      cover: populateImage(), // Fetch only the cover image URL
-    },
-  };
-}
-
-// Helper to fetch image with only URL
-function populateImage() {
-  return { fields: ['url'] }; // Fetch only the URL field for images
 }
 
 export const collectionPopulates = {
@@ -215,125 +118,7 @@ export const collectionPopulates = {
   },
   pages: {
     seo: {
-      populate: {
-        fields: ['metaTitle', 'metaDescription'], // Fetch only metaTitle and metaDescription
-        metaImage: {
-          fields: ['url'], // Fetch only the URL field from metaImage
-        },
-      },
-    },
-  },
-}
-
-export const defultPopulates = {
-  structure: {
-    on: {
-      'section.hero-section': {
-        populate: {
-          sectionIntro: {
-            populate: {
-              cover: {
-                fields: ['url'], // Fetch only cover image URL
-              },
-            },
-          },
-          buttons: true,
-          logo: {
-            fields: ['url'], // Fetch only logo URL
-          },
-        },
-      },
-      'section.reference-section': {
-        populate: {
-          sectionIntro: true,
-          clients: {
-            fields: ['name', 'link'], // Only fetch the client name and link
-            populate: {
-              logo: {
-                fields: ['url'], // Fetch only logo URL
-              },
-            },
-            pagination: {
-              pageSize: 10, // Limit the number of clients
-            },
-          },
-        },
-      },
-      'section.projects-section': {
-        populate: {
-          sectionIntro: true,
-          projects: {
-            populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Fetch only cover image URL
-                  },
-                },
-              },
-              logo: {
-                fields: ['url'], // Fetch logos with only the URL
-              },
-            },
-            pagination: {
-              pageSize: 5, // Limit the number of projects per response
-            },
-          },
-        },
-      },
-      'section.testimonials': {
-        populate: {
-          sectionIntro: true,
-          testimonials: {
-            populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Fetch only cover image URL
-                  },
-                },
-              },
-              author: {
-                populate: {
-                  avatar: {
-                    fields: ['url'], // Fetch only avatar image URL
-                  },
-                },
-              },
-              member: {
-                populate: {
-                  fullname: true,
-                  avatar: {
-                    fields: ['url'], // Fetch only avatar image URL
-                  },
-                },
-              },
-            },
-            pagination: {
-              pageSize: 5, // Limit the number of testimonials
-            },
-          },
-        },
-      },
-      'section.services-section': {
-        populate: {
-          sectionIntro: true,
-          our_services: {
-            populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Fetch only cover image URL
-                  },
-                },
-              },
-            },
-            pagination: {
-              pageSize: 5, // Limit the number of services
-            },
-          },
-        },
-      },
+      populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
 }
@@ -346,39 +131,6 @@ export const createQueryParams = (
   return {
     populate: {
       ...(collectionPopulates[collection] || {}),
-      ...(includeStructure ? structurePopulate : {}),
-    },
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-}
-
-export const createHomeSeoQueryParams = (
-  collection: keyof typeof collectionPopulates,
-  includeStructure = true,
-): RestQueryParams => {
-  console.log("create collection: ", collection);
-  return {
-    populate: {
-      ...(collectionPopulates[collection] || {}),
-    },
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-}
-
-export const createHomeQueryParams = (
-  collection: keyof typeof collectionPopulates,
-  includeStructure = true,
-): RestQueryParams => {
-  return {
-    populate: {
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',

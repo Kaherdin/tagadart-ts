@@ -4,26 +4,26 @@ import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
 import { generateSlugPageMetadata } from '@/lib/seo'
 import { componentResolver } from '@/lib/componentResolver'
-import {
-  fetchHomePageBySlug,
-  fetchPageBySlug,
-  fetchHomeSEOPageBySlug,
-} from '@/request/fetch'
+import { fetchPageBySlug } from '@/request/fetch'
 
 type Props = {
-  params: {
+  params: Promise<{
     lang: string
     slug: string
-  }
+  }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await fetchHomeSEOPageBySlug(params.slug, params.lang)
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
+  const page = await fetchPageBySlug(params.slug, params.lang)
+
   return generateSlugPageMetadata({ page })
 }
 
-export default async function PageRoute({ params }: Props) {
-  const page = await fetchHomePageBySlug(params.slug, params.lang)
+export default async function PageRoute(props: Props) {
+  const params = await props.params
+  const page = await fetchPageBySlug(params.slug, params.lang)
+
   if (!page || !page.data || page.data.length === 0) return null
 
   type Section = {
